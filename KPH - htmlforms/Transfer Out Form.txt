@@ -1,0 +1,266 @@
+<htmlform>
+<style>
+body {
+	background-color: #ffffff;
+}
+
+.bodycontainer {
+	padding: 2px;
+	background-color: transparent;
+}
+
+.header {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: x-large;
+	font-weight: bold;
+	color: #02416e;
+	height: 40px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #ebf2f7;
+	margin-bottom: 5px;
+}
+
+.container {
+	clear: both;
+	height: auto;
+	width: 100%;
+	padding: 2px;
+	background-color: transparent;
+}
+
+.leftsection {
+	clear: both;
+	float: left;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.sectioninleft {
+	border-right: 2px solid #02416e;
+	background-color: #ebf2f7;
+	border-bottom: 2px solid #02416e;
+	border-left: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+}
+
+.rightsection {
+	float: right;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.sectioninright {
+	background-color: #ebf2f7;
+	border-left: none;
+	border-bottom: 2px solid #02416e;
+	border-right: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+}
+
+.section {
+	margin-bottom: 5px;
+	clear: both;
+	background-color: #ebf2f7;
+	border: 2px solid #02416e;
+}
+
+.sectionheader {
+	font-style: italic;
+	font-family: Gill, Georgia, serif;
+	font-size: medium;
+	font-weight: bold;
+	height: auto;
+	width: inherit;
+	border: 2px solid #ccccff;
+	text-align: left;
+	padding: 2px;
+	background-color: #81afc1;
+}
+
+.sectionbody {
+	clear: both;
+	height: auto;
+	width: inherit;
+	background-color: transparent;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.separator {
+	clear: both;
+	font-style: normal;
+	font-family: Gill, Georgia, serif;
+	font-size: larger;
+	font-weight: bold;
+	color: #02416e;
+	height: 30px;
+	border: 2px solid #ccccff;
+	border-left: 2px solid #02416e;
+	border-bottom: none;
+	border-right: 2px solid #02416e;
+	border-top: 2px solid #02416e;
+	text-align: center;
+	background-color: #ebf2f7;
+}
+
+.footer {
+	clear: both;
+	height: 20px;
+	width: 100%;
+	border: 2px solid #ccccff;
+	text-align: center;
+	background-color: #fbfce3;
+}
+
+input[type="text"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+
+input[type="submit"] {
+	font-style: italic;
+	font-family: Georgia;
+}
+</style>
+
+<div class="header">Transfer Out Form</div>
+<div class="bodycontainer">
+	<div class="separator">Patient Transfer Out Information</div>
+
+	<div class="section">
+		<div class="sectionheader">Encounter Details</div>
+		<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>Date:</td>
+					<td><encounterDate default="today" /></td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td><encounterLocation default="1006" /></td>
+				</tr>
+				<tr>
+					<td>Provider</td>
+					<td><encounterProvider default="currentUser" /></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="sectionheader">Demographic Information</div>
+		<div class="sectionbody">
+			<table class="baseline-aligned">
+				<tr>
+					<td>Patient names</td>
+					<td><b><u><lookup expression="patient.personName" /></u></b><br />
+						{<b>Id:</b>
+					<lookup expression="patient.patientIdentifier.identifier" />; <b>Sex:</b>
+					<lookup expression="patient.gender" />; <b>Age:</b>
+					<lookup expression="patient.age" />}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="sectionheader">Transfer Information</div>
+		<div class="sectionbody">
+			<obsgroup groupingConceptId="12088">
+				<table class="baseline-aligned">
+					<tr>
+						<td>Transferring Facility</td>
+						<td><patient field="identifierLocation" /></td>
+					</tr>
+					<tr>
+						<td>Transferring Department</td>
+						<td><obs conceptId="12090" /></td>
+					</tr>
+					<tr>
+						<td>Transfer Date and Time</td>
+						<td><obs conceptId="12098" /></td>
+					</tr>
+					<tr>
+						<td>Receiving Facility</td>
+						<td><patient field="identifierLocation" /></td>
+					</tr>
+					<tr>
+						<td>Receiving Department</td>
+						<td><obs conceptId="12091" /></td>
+					</tr>
+					<tr>
+						<td>Reason for Transferring out</td>
+						<td><obs conceptId="3004" id="past_medical" style="textarea" rows="3" cols="30"/></td>
+					</tr>
+					<tr>
+						<td colspan="2">			
+							<fieldset>
+								<legend>
+									<b>Final diagnosis</b>
+								</legend>
+									<table class="baseline-aligned">
+										<tr>
+											<td>- Main Diagnostic</td>
+											<td><obs id="primary_digno" conceptId="3065" answerClasses="Diagnosis" style="autocomplete"  size="80" />
+											<span style="color:blue" ><b><i>Type 3 first letters of a diagnosis!</i></b></span></td>
+											<td><div id="other_primDiag"><obs id="other_primDiag" conceptId="3106" style="textarea"/></div></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+												<b>Is Diagnosis an HIV Opportunistic</b><obs id="is_opportunistic" style="checkbox" conceptId="10961"/>
+											</td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>- Secondary Diagnostic</td>
+											<td><obs id="second_digno" conceptId="3065" answerClasses="Diagnosis" style="autocomplete"  size="80" />
+											<span style="color:blue" ><b><i>Type 3 first letters of a diagnosis!</i></b></span></td>
+											<td><div id="other_secDiag"><obs id="other_secDiag" conceptId="3106" style="textarea"/></div></td>
+										</tr>
+                                        <tr>
+	                                       <td>- <b>Case status / Etat de cas: </b></td>
+	                                       <td><obs conceptId="8048" answerConceptIds="6964,8049" answerLabels="New Case, Old Case" required="true" /></td>
+                                        </tr>
+									</table>
+							</fieldset>
+						</td>
+					</tr>			
+				</table>
+			</obsgroup>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="sectionheader">Transportation</div>
+		<div class="sectionbody">
+			<obsgroup groupingConceptId="12100">
+				<table class="baseline-aligned">
+					<tr>
+						<td>Required monitoring during transportation</td>
+						<td><obs conceptId="12102" style="checkbox" /></td>
+					</tr>
+					<tr>
+						<td>Type of transportation</td>
+						<td><obs conceptId="975" /> (TBC...)</td>
+					</tr>
+					<tr>
+						<td>Did the patient or next Kin consent?</td>
+						<td><obs conceptId="12103" /></td>
+					</tr>
+				</table>
+			</obsgroup>
+		</div>
+	</div>
+
+</div>
+
+<div>
+	<submit />
+</div>
+
+</htmlform>
+
