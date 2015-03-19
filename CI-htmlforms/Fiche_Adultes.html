@@ -1,0 +1,240 @@
+<htmlform>
+      <!-- Fiche adulte
+         written by Kamonyo Mugabo 
+         -->
+	<macros>
+		paperFormId = Flow-DM-RW.V2.0.akb.15May09
+		headerColor =#009d8e
+		fontOnHeaderColor = white
+	</macros>
+
+	<style>
+		.formName { background-color:#e0e0ff; }
+		.section { border: 1px
+		solid #009d8e; width:99%; padding:2px; text-align:left;
+		margin-bottom:10px; }
+		.sectionHeader { background-color: #009d8e;
+		color: white; display: block; padding: 2px; font-weight:bold; }
+		table.symptoms th {text-align: right;}
+		.note {color:red;}
+		td
+		{vertical-align:top;}
+		table.labTable td { color:red; }
+		table.labTable
+		td.dateField { text-align:right; }
+		table.identifierTable td
+		{padding-right:10px;}
+		div.paddedTable span {padding-right:20px;}
+	</style>
+
+	<section headerLabel="FICHE ADULTE">
+	<table border="2" cellspacing="0" cellpadding="6" width="100%">
+		<tr>
+			<td>
+				<b>
+					IMB ID:
+					<lookup class="value" expression="patientIdentifiers.get(&quot;IMB ID&quot;)" />
+				</b>
+			</td>
+			<td>
+				Date:
+				<encounterDate default="today" />
+			</td>
+			<td>
+				Clinique / Clinic:
+				<encounterLocation />
+			</td>
+			<td>
+				Nom/ Signature:
+				<encounterProvider role="HIV Patient Provider" />
+			</td>
+		</tr>
+	</table>
+</section>
+	<section headerLabel="I. DONNES SOCIODEMOGRAPHIQUES">
+		<table border="2" cellspacing="0" cellpadding="6" width="100%">
+			<tr>
+				<td width="30%">
+				Nom:<lookup expression="patient.personName.familyName"/><br/><br/>
+				Prenon:<lookup expression="patient.personName.givenName"/><br/><br/>
+				Sex:<lookup class="value" expression="patient.Gender" /><br/><br/>
+				Date de naissance:<lookup class="value" expression="patient.birthdate" /><br/><br/>
+				Lieu de naissance <obs conceptId="1572"/><br/><br/>
+				Nationalité: <obs conceptId="162887"/><br/><br/>
+				Religion:
+	   <obs conceptId="162888" answerConceptId="162889" answerLabel="Chrétien " />
+       <obs conceptId="162888" answerConceptId="162890" answerLabel="Musulman" />
+       <obs conceptId="162888" answerConceptId="162892" answerLabel="Animiste " /><br/>&#160;&#160;&#160;&#160; 
+       <obs conceptId="162888" answerConceptId="162891" answerLabel="Autre religion " />
+       <obs conceptId="162888" answerConceptId="162893" answerLabel="Sans religion " /> <br/><br/>
+       Profession : 
+       <obs conceptId="1542" answerConceptId="1540" answerLabel="en Activite" />
+       <obs conceptId="1542" answerConceptId="123801" answerLabel="Au chomage" />
+       <obs conceptId="1542" answerConceptId="159461" answerLabel="A la retraite" /><br/><br/>
+       Population hautement vulnérable:
+       <obs conceptId="140162" answerConceptId="1065" answerLabel="Oui" />
+       <obs conceptId="140162" answerConceptId="1066" answerLabel="Non" /><br/><br/>
+       <small>Si oui, Type de population :  
+       <obs conceptId="162894" answerConceptId="162277" answerLabel="Population carcerale" />
+       <obs conceptId="162894" answerConceptId="159463" answerLabel="Proffessionel" /><br/><br/>
+       du sexe :
+       <obs conceptId="160581" answerConceptId="160578" answerLabel="HSH" />
+       <obs conceptId="160581" answerConceptId="105" answerLabel="UDI" /><br/><br/>
+       <obs conceptId="160581" answerConceptId="5622" answerLabel="Autre" /><obs conceptId="162895"/></small>
+				</td>
+			    <td width="30%">
+				Niveau d’instruction :
+	   <obs conceptId="1712" answerConceptId="1107" answerLabel="Non scolarisé(e)" />
+       <obs conceptId="1712" answerConceptId="1713" answerLabel="Primaire" />
+       <obs conceptId="1712" answerConceptId="1714" answerLabel="Secondaire" />
+       <obs conceptId="1712" answerConceptId="159785" answerLabel="Supérieur" /><br/><br/>
+       Situation matrimoniale :
+       <obs conceptId="1054" answerConceptId="5555" answerLabel="Marié(e) " />
+       <obs conceptId="1054" answerConceptId="1060" answerLabel="Concubinage" />
+       <obs conceptId="1054" answerConceptId="135704" answerLabel="Célibataire" />
+       <obs conceptId="1054" answerConceptId="1059" answerLabel="Veuf (ve)" />
+       <obs conceptId="1054" answerConceptId="1058" answerLabel="Divorcé(e " />
+       <br/><br/>
+       Si Marié(e)/Concubinage, conjoint(e) informé(e) ? : <hr/><br/>
+       <obs conceptId="162896" answerConceptId="1065" answerLabel="Oui" />
+       <obs conceptId="162896" answerConceptId="1066" answerLabel="Non" /><br/><br/>
+       Conjoint(e) infecté (e) : <hr/><br/>
+       <obs conceptId="1436" answerConceptId="703" answerLabel="Oui" />
+       <obs conceptId="1436" answerConceptId="664" answerLabel="Non" />
+       <obs conceptId="1436" answerConceptId="1067" answerLabel="Ne sait pas" /><br/><br/>
+       
+       Location:(don't Know how you will manage location)
+       <addressHierarchyRwanda/><br/><br/>
+Contact Téléphonique <hr/><br/>
+Tél:<obs conceptId="159635"/>   Cell:<obs conceptId="159635"/> 
+       
+				</td>
+			</tr>
+			
+			
+		</table>
+		<table border="2" cellspacing="0" cellpadding="6" width="100%">
+			<tr>
+				<td width="30%">
+				<section headerLabel="II. TEST VIH/SIDA"><br/>
+				Date du test VIH :<obs conceptId="162897" /> <br/><br/>
+				Lieu du test: <obs conceptId="162898"/><br/><br/>
+				Résultat:
+		<obs conceptId="1040" answerConceptId="703" answerLabel="VIH-1" />
+       <obs conceptId="1326" answerConceptId="703" answerLabel="VIH-2" />
+       <obs conceptId="159427" answerConceptId="703" answerLabel="VIH-1+2" /><br/><br/>
+         Date annoncee :<obs conceptId="160082" /><br/>
+				</section>
+				  </td>
+			    <td width="30%">
+				<section headerLabel="III. Personne de soutien (à contacter)">
+				<br/>Nom:<obs conceptId="162899"/><br/><br/>
+				Prenoms:<obs conceptId="73310"/><br/><br/>
+				Address:<obs conceptId="160641"/><br/><br/>
+				Tél:<obs conceptId="160642"/>  Cell:<obs conceptId="162900"/> </section>
+				</td>
+			</tr>
+		</table>
+		<table border="2" cellspacing="0" cellpadding="6" width="100%">
+			<tr>
+				<td width="30%">
+				<section headerLabel="IV.POINT D'ENTREE POUR LES SOINS">
+				<br/>
+		<obs conceptId="160540" answerConceptId="160539" answerLabel="CDV" /><br/>
+       <obs conceptId="160540" answerConceptId="160538" answerLabel="PTME" /><br/>
+       <obs conceptId="160540" answerConceptId="160548" answerLabel="CAT ou CDT" /><br/>
+       <obs conceptId="160540" answerConceptId="160542" answerLabel="Médecine" /><br/>
+       <obs conceptId="160540" answerConceptId="160537" answerLabel="Pediatrie" /><br/>
+       <obs conceptId="160540" answerConceptId="160546" answerLabel="IST" /><br/>
+       
+       <obs conceptId="160540" answerConceptId="160536" answerLabel="Hospitalisation" /><br/>
+       <obs conceptId="160540" answerConceptId="160551" answerLabel="Auto référence" /><br/>
+       <obs conceptId="160540" answerConceptId="160543" answerLabel="OBC" /><br/>
+       <obs conceptId="160540" answerConceptId="83" answerLabel="Toxicologie" /><br/>
+       <obs conceptId="160540" answerConceptId="160564" answerLabel="AES" /><br/>
+       <obs conceptId="160540" answerConceptId="5622" answerLabel="Autres" /><br/>
+      <hr/><br/>
+		<obs conceptId="1272" answerConceptId="5622" answerLabel="Référé avec résumé " /><br/>
+       <obs conceptId="1272" answerConceptId="1107" answerLabel="Référé sans résumé " /><br/>
+       
+         Date de référence :<obs conceptId="160649" /><br/>
+         Centre d’origine :<obs conceptId="160535"/> <br/><br/> 
+				</section>
+				  </td>
+			    <td width="30%">
+				<section headerLabel="V. ANTECEDENTS ARV ET/OU PTME"><br/>
+				ARV:
+		<obs conceptId="162703" answerConceptId="1065" answerLabel="Oui" />
+       <obs conceptId="162703" answerConceptId="1066" answerLabel="Non" /><br/><br/>
+       Si Oui, date de démarrage:<obs conceptId="159599" />
+				<br/>Régime (abréviation) : <obs conceptId="1400"/>not sure if right concept<br/><br/>Traitement en cours : 
+	<obs conceptId="1277" answerConceptId="1257" answerLabel="Oui" />
+       <obs conceptId="1277" answerConceptId="1260" answerLabel="Non" />
+       Si Non, date d’arrêt <obs conceptId="160739"/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+		</section>
+				</td>
+			</tr>
+		</table>
+		<section headerLabel="VI. AUTRES ANTECEDENTS">
+		 <table border="2" cellspacing="0" cellpadding="6" width="100%">
+			<tr>
+				<td width="50%">
+				<br/>Contraception :
+		<obs conceptId="160653" answerConceptId="965" answerLabel="Oui" />
+       <obs conceptId="160653" answerConceptId="160652" answerLabel="Non" />
+      <br/><br/>
+        Si oui,  méthode utilisée :
+       <obs conceptId="374" answerConceptId="780" answerLabel="Contraceptifs oraux" />&#160;&#160;&#160; 
+       <obs conceptId="374" answerConceptId="5279" answerLabel="Contraceptifs injectables " /><br/>
+       <obs conceptId="374" answerConceptId="1359" answerLabel="Implants" />&#160;&#160;&#160; 
+       <obs conceptId="374" answerConceptId="5275" answerLabel="Stérilets" /><br/>
+       <obs conceptId="374" answerConceptId="1489" answerLabel="Préservatifs masculins" />&#160;&#160;&#160;
+       <obs conceptId="374" answerConceptId="5276" answerLabel="Préservatifs féminins" /><br/>
+       <br/>
+				</td>
+				<td width="50%">
+		Tuberculose: 
+	   <obs conceptId="160108" answerConceptId="703" answerLabel="Oui" />
+       <obs conceptId="160108" answerConceptId="664" answerLabel="Non" />
+       <obs conceptId="160108" answerConceptId="1138" answerLabel="Ne sait pas" /><br/><br/> 
+       Si Oui, date dernier épisode date:<obs conceptId="159964"/><br/><br/>
+       
+       Zona :
+       <obs conceptId="192" answerConceptId="703" answerLabel="Oui" />
+       <obs conceptId="192" answerConceptId="664" answerLabel="Non" />
+       <obs conceptId="192" answerConceptId="1138" answerLabel="Ne sait pas" /><br/><br/>
+       Maladie de Kaposi:
+       <obs conceptId="162901" answerConceptId="703" answerLabel="Oui" />
+       <obs conceptId="162901" answerConceptId="664" answerLabel="Non" />
+       <obs conceptId="162901" answerConceptId="1138" answerLabel="Ne sait pas" /><br/><br/>
+       Maladie de Méningite à Cryptocoque:
+       <obs conceptId="159519" answerConceptId="1065" answerLabel="Oui" />
+       <obs conceptId="159519" answerConceptId="1066" answerLabel="Non" />
+       <obs conceptId="159519" answerConceptId="1067" answerLabel="Ne sait pas" /><br/><br/>
+       Toxoplasmose cérébrale:
+      <obs conceptId="990" answerConceptId="1065" answerLabel="Oui" />
+       <obs conceptId="990" answerConceptId="1066" answerLabel="Non" />
+       <obs conceptId="990" answerConceptId="1067" answerLabel="Ne sait pas" /><br/><br/>
+       Hépatite virale B/C :
+       <obs conceptId="1322" answerConceptId="703" answerLabel="Oui" />
+       <obs conceptId="1322" answerConceptId="664" answerLabel="Non" />
+       <obs conceptId="1322" answerConceptId="1138" answerLabel="Ne sait pas" /><br/><br/>
+       Transfusion sanguine:
+       <obs conceptId="1871" answerConceptId="1065" answerLabel="Oui" />
+       <obs conceptId="1871" answerConceptId="1065" answerLabel="Non" />
+       <obs conceptId="1871" answerConceptId="1065" answerLabel="Ne sait pas" /><br/><br/>
+       Si Oui, Nbre <obs conceptId="162902"/>&#160;&#160;
+       Date de la dernière: <obs conceptId="162903" /><br/><br/> 
+				</td>
+				</tr>
+				</table>
+			</section>
+		
+	</section>
+	
+	
+	<br />
+	<center>
+		<submit />
+	</center>
+</htmlform>							
